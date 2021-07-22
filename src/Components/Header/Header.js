@@ -5,9 +5,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import styled, { keyframes } from "styled-components";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import logo from '../utilities/Amazon_logo.svg';
-import FlagIndia from '../utilities/Flag_of_India.svg'
-import Cart from '../utilities/cart.png';
+import logo from '../../utilities/Amazon_logo.svg';
+import FlagIndia from '../../utilities/Flag_of_India.svg'
+import Cart from '../../utilities/cart.png';
 // import Sidebar from '../Sidebar/Sidebar'
 import Sidebar from '../Side/Side'
 import MenuIcon from '@material-ui/icons/Menu';

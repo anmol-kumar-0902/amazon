@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../utilities/Amazon_logo_black.svg';
+import logo from '../../utilities/Amazon_logo_black.svg';
 import { Link } from "react-router-dom";
 import './SignIn.css'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';

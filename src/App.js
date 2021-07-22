@@ -1,10 +1,10 @@
 import React from "react";
-import Home from './Home/Home'
-import Header from "./Header/Header";
-import SignIn from './SignIn/SignIn'
+import Home from './Components/Home/Home'
+import Header from "./Components/Header/Header";
+import SignIn from './Components/SignIn/SignIn'
 // import Side from './Side/Side'
-import SignUp from './SignUp/SignUp'
-import Search from './Search/Search'
+import SignUp from './Components/SignUp/SignUp'
+import Search from './Components/Search/Search'
 import {
   BrowserRouter as Router,
   Switch,
