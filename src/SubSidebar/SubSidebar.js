@@ -4,7 +4,7 @@ export class SubSidebar extends Component {
     render() {
         return (
             <div> 
-                hell
+                hello
             </div>
         )
     }
