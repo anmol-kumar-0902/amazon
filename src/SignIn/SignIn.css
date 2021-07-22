@@ -1,0 +1,151 @@
+.SignInWrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    z-index: 2;
+    align-items: center;
+    padding: 10px ;
+    line-height: 1.5rem;
+}
+#SignInItem_1{
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px 0 20px;
+}
+#signInItem_1 Link span{
+    
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  white-space: pre;
+  text-decoration:none !important ;
+}
+#SignInItem_1 img{
+    width: 100px;
+}
+#SignInItem_2{
+    width: 350px;
+    padding: 15px 25px 25px;
+    border: 1px solid rgba(199, 192, 192, 0.993);
+    border-radius: 4px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+#SignInItem2Item_1{
+    font-size: 25px;
+    flex-basis: 40px;
+    font-weight: 500;
+}
+#SignInItem2Item_2{
+    font-weight: 700;
+    padding: 2px 0;
+}
+
+form, form #SignInItem2Item_3 ,form #SignInItem2Item_3  input{
+    width: 100%;
+}
+#SignInItem2Item_3 input{
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid rgb(122, 120, 120);
+    outline: none;
+}
+#SignInItem2Item_3  input:focus
+{
+    border: 1px solid #f1804c;
+    box-shadow: 0 0 7px #f0c14b;
+    outline-offset: 0px;
+    outline: none;
+}
+#SignInItem2Item_3 button{
+    margin:10px 0 ;
+    outline: none;
+    border: 1px solid rgb(122, 120, 120);
+    border-radius: 4px;
+    background-color: #f0c14b;
+    width: 100%;
+    height: 33px;
+}
+#SignInItem2Item_5{
+    font-size: 12px;
+    padding: 15px 0;
+    font-weight: 500;
+}
+#cond:hover{
+    color: rgb(233, 41, 41);
+}
+details > summary {
+    list-style: none;
+  }
+  details>summary{
+      position: relative;
+      left: -8px;
+  }
+  .needHelp span{
+      font-size: 12px;
+    color: rgb(0, 129, 214);     
+  }
+  .needHelp span:hover{
+      color:rgb(233, 41, 41) ;
+      text-decoration:underline ;
+  }
+  #help{
+    color: rgb(0, 129, 214); 
+    cursor: pointer;
+  }
+  #help:hover{
+    color:rgb(233, 41, 41) ;
+    text-decoration:underline ;
+}
+#SignInItem_3{
+    text-align: center;
+    position: relative;
+    top: 10px;
+    padding-top: 1px;
+    margin-bottom: 14px;
+    line-height: 0;
+    z-index: 6;
+}
+#SignInItem_3 h5{
+    line-height: 1;
+    font-size: 12px;
+    color: #767676;
+    font-weight: 400;
+    z-index: 100;
+    width: 350px;
+    align-items: center;
+    flex-basis: 40px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    
+}
+#SignInItem_3 h5:after {
+    content: "";
+    width: 100%;
+    background-color: transparent;
+    display: block;
+    height: 1px;
+    border-top: 1px solid #e7e7e7;
+    position: absolute;
+    top: 50%;    
+    z-index: -1;
+}
+#SignInItem_4 button{
+    margin:10px 0 ;
+    outline: none;
+    border: 1px solid;
+    border-color: #adb1b8 #a2a6ac #8d9096;
+    border-radius: 4px;
+    background-color: #e7e9ec;
+    width: 350px;
+    height: 33px;
+}
+@media screen and (max-width:425px) {
+    
+#SignInItem_2{
+    width: 300px;
+}
+}

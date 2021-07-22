@@ -1,0 +1,10 @@
+#idid{
+    background-color: wheat;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    height:  50vh;
+    font-size: 28px;
+}
