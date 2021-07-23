@@ -39,13 +39,15 @@
 }
 #SignInItem2Item_2{
     font-weight: 700;
-    padding: 2px 0;
+    flex-basis: auto;
 }
 
 form, form #SignInItem2Item_3 ,form #SignInItem2Item_3  input{
     width: 100%;
 }
 #SignInItem2Item_3 input{
+    padding: 0 4px 0 4px;
+    margin: 4px 0;
     height: 30px;
     border-radius: 4px;
     border: 1px solid rgb(122, 120, 120);
@@ -58,8 +60,8 @@ form, form #SignInItem2Item_3 ,form #SignInItem2Item_3  input{
     outline-offset: 0px;
     outline: none;
 }
-#SignInItem2Item_3 button{
-    margin:10px 0 ;
+ .button{
+    margin:10px 0  0 0 ;
     outline: none;
     border: 1px solid rgb(122, 120, 120);
     border-radius: 4px;

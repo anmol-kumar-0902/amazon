@@ -1,8 +1,11 @@
 import React from "react";
 import Home from './Components/Home/Home'
 import Header from "./Components/Header/Header";
-import SignIn from './Components/SignIn/SignIn'
-// import Side from './Side/Side'
+// import Privateroutes from "./"
+import PrivateRoutes from './HOC/PrivateRoutes'
+import SignIn from './Components/SignIn/SignIn';
+import Dashboard from './Components/Dashboard/Dashboard'
+import './App.css'
 import SignUp from './Components/SignUp/SignUp'
 import Search from './Components/Search/Search'
 import {
@@ -10,6 +13,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+
+
 
 function App() {
   return (
@@ -30,6 +35,8 @@ function App() {
         <Route exact path='/signUp'>
         <SignUp />
         </Route>
+        <PrivateRoutes exact path='/dashboard' component={Dashboard} />
+        
       </Switch>
     </Router>
   );

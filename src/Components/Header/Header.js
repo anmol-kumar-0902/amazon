@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import '../Header/Header.css'
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import SearchIcon from '@material-ui/icons/Search';
@@ -8,103 +8,93 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import logo from '../../utilities/Amazon_logo.svg';
 import FlagIndia from '../../utilities/Flag_of_India.svg'
 import Cart from '../../utilities/cart.png';
-// import Sidebar from '../Sidebar/Sidebar'
 import Sidebar from '../Side/Side'
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from "react-router-dom";
-import { createRef } from 'react';
-export class Header extends Component {
-    constructor() {
-        super();
-        this.hello = createRef();
-        this.state = {
-            content: 'All',
-            styleShade: {
-                display: 'none',
-                check: false
-            },
-            styleCategoryDropDown: {
-                display: 'none',
-                check: false
-            },
-            StyleSidebar:   styled.div`
-                            display:none;`
 
-            
-}
-    }
-    changePosition=''
+const Header = (props) => {
+    const [content, setContent] = useState('All');
+    const [name,setName]=useState('Sign in')
+    const [styleShade, setStyleShade] = useState({
+        display: 'none',
+        check: false
+    });
+    const [styleCategoryDropDown, setStyleCategoryDropDown] = useState({
+        display: 'none',
+        check: false
+    });
+    const [StyleSidebar, setStyleSidebar] = useState(styled.div`display:none;`);
 
+    let changePosition = ''
+    let disp = ''
 
-    changeposition1=keyframes`
+    const changeposition1 = keyframes`
     from{transform: translateX(-100%);}
      to{transform: translateX(0%);}
     `;
-    changeposition2=keyframes`
+    const changeposition2 = keyframes`
     from{transform: translateX(0%);}
      to{transform: translateX(-100%);}
     `;
-changecontent = (event) => {
-    console.log(event.target.innerText);
-    let x = event.target.innerText;
-    this.setState({
-        content: x
-    })
-}
-changeDisplayDropdownCategory = () => {
-    if (this.state.styleCategoryDropDown.check === false) {
-        this.setState({
-            styleCategoryDropDown: {
+    const changecontent = (event) => {
+        console.log(event.target.innerText);
+        let x = event.target.innerText;
+        setContent(x);
+    }
+    const changeDisplayDropdownCategory = () => {
+        if (styleCategoryDropDown.check === false) {
+            setStyleCategoryDropDown({
                 display: 'flex',
                 check: true
-            }
-        })
-    }
-    else {
-        this.setState({
-            styleCategoryDropDown: {
+            })
+
+        }
+        else {
+            setStyleCategoryDropDown({
                 display: 'none',
                 check: false
-            }
-        })
+            })
+        }
     }
-}
-toggleShadeAndSidebar = () => {
-    if (this.state.styleShade.check === false) {
-        this.setState({
-            styleShade: {
+    const toggleShadeAndSidebar = () => {
+        if (styleShade.check === false) {
+
+            setStyleShade( {
                 display: 'inline',
                 check: true
-            },
-            StyleSidebar: styled.div`
-            display:'inline';
-            `
-        });
-        this.changePosition=this.changeposition1;
+            });
+            setStyleSidebar(styled.div`display:'inline';`)
 
-    }
-    else {
-        this.setState({
-            styleShade: {
+            changePosition = changeposition1;
+
+        }
+        else {
+            setStyleShade ({
                 display: 'none',
                 check: false
-            },
-            StyleSidebar: styled.div`
-            display:none;
-            ${'' /* animation:${this.changeposition2} 1s ease; */}
-            `
-        });
-        this.disp='none';
-        this.changePosition=this.changeposition2;
+            });
+            setStyleSidebar(styled.div` display:none;
+            { /* animation:${changeposition2} 1s ease; */}
+            `);
+
+            disp = 'none';
+            changePosition = changeposition2;
+
+        }
+
     }
-}
-render() {
+
+
+
+    console.log("anmol", localStorage.token);
+
+
     return (
         <>
             <div className="navcontainer">
                 <div className="navitem" id="navitem1">
                     {/* nav item for smaller window size */}
-                    <div className="navsubitem1" id="navsubitem1_0" onClick={this.toggleShadeAndSidebar}>
+                    <div className="navsubitem1" id="navsubitem1_0" onClick={toggleShadeAndSidebar}>
                         <MenuIcon style={{ fontSize: 25 }} />
                     </div>
                     <div className="navsubitem1" id="navsubitem1_1">
@@ -122,29 +112,29 @@ render() {
                 </div>
                 <div className="navitem" id="navitem2">
 
-                    <div className="navsubitem2" id="navsubitem2_0" onClick={this.changeDisplayDropdownCategory}>
+                    <div className="navsubitem2" id="navsubitem2_0" onClick={changeDisplayDropdownCategory}>
                         <span className="navsubitem2Item1" style={{ fontSize: 12 }} >
-                            {this.state.content}
+                            {content}
                         </span>
-                        <span className="allItemList" style={this.state.styleCategoryDropDown}>
+                        <span className="allItemList" style={styleCategoryDropDown}>
 
-                            <div className="allItem" id="allItem_1" onClick={this.changecontent}>All Categories</div>
-                            <div className="allItem" id="allItem_2" onClick={this.changecontent}>Deals</div>
-                            <div className="allItem" id="allItem_3" onClick={this.changecontent}>Alexa Skills</div>
-                            <div className="allItem" id="allItem_4" onClick={this.changecontent}>Amazon Devices</div>
-                            <div className="allItem" id="allItem_5" onClick={this.changecontent}>Amazon Fashion</div>
-                            <div className="allItem" id="allItem_6" onClick={this.changecontent}>Amazon Patry</div>
-                            <div className="allItem" id="allItem_7" onClick={this.changecontent}>Appliances</div>
-                            <div className="allItem" id="allItem_8" onClick={this.changecontent}>Apps & Games</div>
-                            <div className="allItem" id="allItem_9" onClick={this.changecontent}>Baby</div>
-                            <div className="allItem" id="allItem_10" onClick={this.changecontent}>Beauty</div>
-                            <div className="allItem" id="allItem_11" onClick={this.changecontent}>Books</div>
-                            <div className="allItem" id="allItem_12" onClick={this.changecontent}>Car & Moterbike</div>
-                            <div className="allItem" id="allItem_13" onClick={this.changecontent}>Clothing & Accessories</div>
-                            <div className="allItem" id="allItem_14" onClick={this.changecontent}>Collectibles</div>
-                            <div className="allItem" id="allItem_15" onClick={this.changecontent}>Computer & Accessories</div>
-                            <div className="allItem" id="allItem_16" onClick={this.changecontent}>Electronics</div>
-                            <div className="allItem" id="allItem_17" onClick={this.changecontent}>Furniture</div>
+                            <div className="allItem" id="allItem_1" onClick={changecontent}>All Categories</div>
+                            <div className="allItem" id="allItem_2" onClick={changecontent}>Deals</div>
+                            <div className="allItem" id="allItem_3" onClick={changecontent}>Alexa Skills</div>
+                            <div className="allItem" id="allItem_4" onClick={changecontent}>Amazon Devices</div>
+                            <div className="allItem" id="allItem_5" onClick={changecontent}>Amazon Fashion</div>
+                            <div className="allItem" id="allItem_6" onClick={changecontent}>Amazon Patry</div>
+                            <div className="allItem" id="allItem_7" onClick={changecontent}>Appliances</div>
+                            <div className="allItem" id="allItem_8" onClick={changecontent}>Apps & Games</div>
+                            <div className="allItem" id="allItem_9" onClick={changecontent}>Baby</div>
+                            <div className="allItem" id="allItem_10" onClick={changecontent}>Beauty</div>
+                            <div className="allItem" id="allItem_11" onClick={changecontent}>Books</div>
+                            <div className="allItem" id="allItem_12" onClick={changecontent}>Car & Moterbike</div>
+                            <div className="allItem" id="allItem_13" onClick={changecontent}>Clothing & Accessories</div>
+                            <div className="allItem" id="allItem_14" onClick={changecontent}>Collectibles</div>
+                            <div className="allItem" id="allItem_15" onClick={changecontent}>Computer & Accessories</div>
+                            <div className="allItem" id="allItem_16" onClick={changecontent}>Electronics</div>
+                            <div className="allItem" id="allItem_17" onClick={changecontent}>Furniture</div>
 
                         </span>
                         <span className="navsubitem2Item2" id="navsubitem2Item2_2" style={{ marginTop: -3 }}>
@@ -210,29 +200,29 @@ render() {
             <div className="navforsmallWrapper">
                 <div className="navforsamllscreen" id="navforsamllscreen1">
 
-                    <div className="navsmallitem1" id="navsmallitem1_0" onClick={this.changeDisplayDropdownCategory}>
+                    <div className="navsmallitem1" id="navsmallitem1_0" onClick={changeDisplayDropdownCategory}>
                         <span className="navsmallitem1Item_1" style={{ fontSize: 12 }} >
-                            {this.state.content}
+                            {content}
                         </span>
-                        <span className="allItemList" style={this.state.styleCategoryDropDown}>
+                        <span className="allItemList" style={styleCategoryDropDown}>
 
-                            <div className="allItem" id="allItem_1" onClick={this.changecontent}>All Categories</div>
-                            <div className="allItem" id="allItem_2" onClick={this.changecontent}>Deals</div>
-                            <div className="allItem" id="allItem_3" onClick={this.changecontent}>Alexa Skills</div>
-                            <div className="allItem" id="allItem_4" onClick={this.changecontent}>Amazon Devices</div>
-                            <div className="allItem" id="allItem_5" onClick={this.changecontent}>Amazon Fashion</div>
-                            <div className="allItem" id="allItem_6" onClick={this.changecontent}>Amazon Patry</div>
-                            <div className="allItem" id="allItem_7" onClick={this.changecontent}>Appliances</div>
-                            <div className="allItem" id="allItem_8" onClick={this.changecontent}>Apps & Games</div>
-                            <div className="allItem" id="allItem_9" onClick={this.changecontent}>Baby</div>
-                            <div className="allItem" id="allItem_10" onClick={this.changecontent}>Beauty</div>
-                            <div className="allItem" id="allItem_11" onClick={this.changecontent}>Books</div>
-                            <div className="allItem" id="allItem_12" onClick={this.changecontent}>Car & Moterbike</div>
-                            <div className="allItem" id="allItem_13" onClick={this.changecontent}>Clothing & Accessories</div>
-                            <div className="allItem" id="allItem_14" onClick={this.changecontent}>Collectibles</div>
-                            <div className="allItem" id="allItem_15" onClick={this.changecontent}>Computer & Accessories</div>
-                            <div className="allItem" id="allItem_16" onClick={this.changecontent}>Electronics</div>
-                            <div className="allItem" id="allItem_17" onClick={this.changecontent}>Furniture</div>
+                            <div className="allItem" id="allItem_1" onClick={changecontent}>All Categories</div>
+                            <div className="allItem" id="allItem_2" onClick={changecontent}>Deals</div>
+                            <div className="allItem" id="allItem_3" onClick={changecontent}>Alexa Skills</div>
+                            <div className="allItem" id="allItem_4" onClick={changecontent}>Amazon Devices</div>
+                            <div className="allItem" id="allItem_5" onClick={changecontent}>Amazon Fashion</div>
+                            <div className="allItem" id="allItem_6" onClick={changecontent}>Amazon Patry</div>
+                            <div className="allItem" id="allItem_7" onClick={changecontent}>Appliances</div>
+                            <div className="allItem" id="allItem_8" onClick={changecontent}>Apps & Games</div>
+                            <div className="allItem" id="allItem_9" onClick={changecontent}>Baby</div>
+                            <div className="allItem" id="allItem_10" onClick={changecontent}>Beauty</div>
+                            <div className="allItem" id="allItem_11" onClick={changecontent}>Books</div>
+                            <div className="allItem" id="allItem_12" onClick={changecontent}>Car & Moterbike</div>
+                            <div className="allItem" id="allItem_13" onClick={changecontent}>Clothing & Accessories</div>
+                            <div className="allItem" id="allItem_14" onClick={changecontent}>Collectibles</div>
+                            <div className="allItem" id="allItem_15" onClick={changecontent}>Computer & Accessories</div>
+                            <div className="allItem" id="allItem_16" onClick={changecontent}>Electronics</div>
+                            <div className="allItem" id="allItem_17" onClick={changecontent}>Furniture</div>
 
                         </span>
                         <span className="navsmallitem1Item_2" id="navsmallitem1Item_2" style={{ marginTop: -3 }}>
@@ -269,7 +259,7 @@ render() {
             {/* nav 2 */}
             <div className="nav2">
                 <div className="navcontainer2" id="navcontainer2" >
-                    <div className="nav2wrapper" id="nav2wrapperleft" onClick={this.toggleShadeAndSidebar}>
+                    <div className="nav2wrapper" id="nav2wrapperleft" onClick={toggleShadeAndSidebar}>
                         <div className="nav2leftitem" id="nav2leftitem1"  >
                             <MenuIcon style={{ fontSize: 25 }} />
                         </div>
@@ -297,17 +287,16 @@ render() {
                     </div>
                 </div>
             </div>
-            <div className="shade" style={this.state.styleShade}></div>
-            <this.state.StyleSidebar >
-            <Sidebar check={this.state.styleShade.check} changePosition={this.changePosition} />
-            </this.state.StyleSidebar>
-            
-            
-            <span className="cross" style={this.state.styleShade} onClick={this.toggleShadeAndSidebar}>
+            <div className="shade" style={styleShade}></div>
+            <  StyleSidebar >
+                <Sidebar check={styleShade.check} changePosition={changePosition} />
+            </  StyleSidebar>
+
+
+            <span className="cross" style={styleShade} onClick={toggleShadeAndSidebar}>
                 <ClearIcon style={{ fontSize: 30 }} /></span>
         </>
     )
-}
-}
 
+}
 export default Header
