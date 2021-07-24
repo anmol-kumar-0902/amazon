@@ -11,10 +11,11 @@ import Cart from '../../utilities/cart.png';
 import Sidebar from '../Side/Side'
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const Header = (props) => {
     const [content, setContent] = useState('All');
-    const [name,setName]=useState('Sign in')
+    const [name, setName] = useState('Sign in')
     const [styleShade, setStyleShade] = useState({
         display: 'none',
         check: false
@@ -24,7 +25,7 @@ const Header = (props) => {
         check: false
     });
     const [StyleSidebar, setStyleSidebar] = useState(styled.div`display:none;`);
-
+    const auth = useSelector(state => state.auth);
     let changePosition = ''
     let disp = ''
 
@@ -59,7 +60,7 @@ const Header = (props) => {
     const toggleShadeAndSidebar = () => {
         if (styleShade.check === false) {
 
-            setStyleShade( {
+            setStyleShade({
                 display: 'inline',
                 check: true
             });
@@ -69,13 +70,11 @@ const Header = (props) => {
 
         }
         else {
-            setStyleShade ({
+            setStyleShade({
                 display: 'none',
                 check: false
             });
-            setStyleSidebar(styled.div` display:none;
-            { /* animation:${changeposition2} 1s ease; */}
-            `);
+            setStyleSidebar(styled.div` display:none;`);
 
             disp = 'none';
             changePosition = changeposition2;
@@ -83,7 +82,21 @@ const Header = (props) => {
         }
 
     }
-
+    console.log("name",auth.user.name);
+    const notLoggedIn = () => {
+        return (
+            <span className="navsubitem3items" id="navsubitem3_2item1" style={{ fontSize: 12 }}>
+                Hello, Sign in
+            </span>
+        )
+    }
+    const loggedIn = () => {
+        return (
+            <span className="navsubitem3items" id="navsubitem3_2item1" style={{ fontSize: 12 }}>
+                Hello, {auth.user.name}
+            </span>
+        )
+    }
 
 
     console.log("anmol", localStorage.token);
@@ -166,9 +179,7 @@ const Header = (props) => {
                     </div>
                     <div className="navsubitem3" id="navsubitem3_2">
                         <Link to="/signIn">
-                            <span className="navsubitem3items" id="navsubitem3_2item1" style={{ fontSize: 12 }}>
-                                Hello, Sign in
-                            </span>
+                            {auth.authenticate?loggedIn():notLoggedIn()}
                         </Link>
                         <span className="navsubitem3items" id="navsubitem3_2item2">
                             <Link to="/signIn">
@@ -288,9 +299,9 @@ const Header = (props) => {
                 </div>
             </div>
             <div className="shade" style={styleShade}></div>
-            <  StyleSidebar >
-                <Sidebar check={styleShade.check} changePosition={changePosition} />
-            </  StyleSidebar>
+            <StyleSidebar>
+                <Sidebar check={styleShade.check} changePosition={changeposition1} />
+            </StyleSidebar>
 
 
             <span className="cross" style={styleShade} onClick={toggleShadeAndSidebar}>

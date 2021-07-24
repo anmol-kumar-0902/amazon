@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
-
+import {Link} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './Side.css'
-export class Side extends Component {
+class Side extends Component {
     constructor(props) {
 
         super(props)
@@ -25,12 +25,14 @@ export class Side extends Component {
     }
     
     
+    
 
     render() {
+        console.log(this.props);
         return (
             <>
                 <div className="SideContainer">
-                    <this.state.sideWrapper>
+                    <this.state.sideWrapper className="abcd">
                         <div className="subSideWrapper" id="subSideWrapper_1">
                             <span className="subWrapper1Items" id="subWrapper1Item_1">
                                 <AccountCircleIcon style={{ fontSize: 30, color: "white" }} />
@@ -79,7 +81,7 @@ export class Side extends Component {
                                 <div className="sub2Item5" id="sub2Item5_1"> Help & Settings</div>
                                 <div className="sub2Item5" id="sub2Item5_2">Your Account</div>
                                 <div className="sub2Item5" id="sub2Item5_3">Customer Service</div>
-                                <div className="sub2Item5" id="sub2Item5_4">Sign In</div>
+                                <Link to={`/signin`}><div className="sub2Item5" id="sub2Item5_4">Sign In</div></Link>
                             </div>
                         </div>
                     </this.state.sideWrapper>

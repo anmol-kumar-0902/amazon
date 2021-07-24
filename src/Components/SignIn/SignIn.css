@@ -5,6 +5,7 @@
     z-index: 2;
     align-items: center;
     padding: 10px ;
+    overflow-x: hidden;
     line-height: 1.5rem;
 }
 #SignInItem_1{
@@ -147,7 +148,15 @@ details > summary {
 }
 @media screen and (max-width:425px) {
     
-#SignInItem_2{
-    width: 300px;
+#SignInItem_2,#SignInItem_4{
+    width: 280px;
+}
+#SignInItem_4{
+    width: 100%;
+    margin: auto;
+}
+#SignInItem_4 button{
+width: 90%;
+margin-left: 20px;
 }
 }

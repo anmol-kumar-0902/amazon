@@ -48,3 +48,8 @@
     text-transform: capitalize;
     display: inline-block;
 }
+@media  (max-width:425px) {
+    .abcd{
+        max-width: 270px;
+    }
+}

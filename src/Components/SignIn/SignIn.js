@@ -28,8 +28,7 @@ const SignIn = (props) => {
         dispatch(login(user));
     }
     if (auth.authenticate) {
-        console.log(auth.authenticate);
-        return <Redirect to='/' />
+        return <Redirect to='/dashboard' />
     }
     return (
         <>
@@ -67,7 +66,7 @@ const SignIn = (props) => {
                                 onChange={(e) => setPassword(e.target.value)} />
 
                         </span>
-                        <button className="button" type="submit">Continue</button>
+                        <button className="button" type="submit">Sign In</button>
                     </form>
                     <span className="SignInItem2Item" id="SignInItem2Item_5">
                         By continuing, you agree to Amazon's
@@ -88,7 +87,7 @@ const SignIn = (props) => {
                     <h5>New to Amazon?</h5>
                 </div>
                 <div className="SignInItem" id="SignInItem_4">
-                    <button>Create your Amazon account</button>
+                    <Link to="/signUp"><button>Create your Amazon account</button></Link>
                 </div>
             </div>
         </>

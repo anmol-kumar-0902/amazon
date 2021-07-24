@@ -1,55 +1,74 @@
 import axios from "../Helpers/axios"
 import { authConstants } from "./Constants"
 
-export const login=(user)=>{
+export const login = (user) => {
     // console.log("user",user);
     // console.log("user",localStorage.user );
-    return async (dispatch)=>{
+    return async (dispatch) => {
 
-        dispatch({type:authConstants.LOGIN_REQUEST})
-        const res = await axios.post(`/signIn`,{
+        dispatch({ type: authConstants.LOGIN_REQUEST })
+        const res = await axios.post(`/signIn`, {
             ...user
         })
 
-        if(res.status===200){
-            const {token,user}=res.data;
-            localStorage.setItem('token',token);
-            localStorage.setItem('user',JSON.stringify(user));
+        if (res.status === 200) {
+            const { token, user } = res.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
             dispatch({
-                type:authConstants.LOGIN_SUCCESS,
-                payload:{
-                    token,user
+                type: authConstants.LOGIN_SUCCESS,
+                payload: {
+                    token, user
                 }
             })
         }
-        else{
-            if(res.status===400){
+        else {
+            if (res.status === 400) {
                 dispatch({
-                    type:authConstants.LOGIN_FAILED,
-                    payload:{erroe:res.data.error}
+                    type: authConstants.LOGIN_FAILED,
+                    payload: { erroe: res.data.error }
                 })
             }
         }
     }
 }
 
-export const isUserLoggedIn = ()=>{
-    return async (dispatch)=>{
-        const token=localStorage.getItem("token");
-        if(token){
+export const isUserLoggedIn = () => {
+    return async (dispatch) => {
+        const token = localStorage.getItem("token");
+        if (token) {
             const user = JSON.parse(localStorage.getItem("user"));
             console.log(user);
             dispatch({
-                type:authConstants.LOGIN_SUCCESS,
-                payload:{
-                    token,user
+                type: authConstants.LOGIN_SUCCESS,
+                payload: {
+                    token, user
                 }
             })
-        }else{
+        } else {
             dispatch({
-                type:authConstants.LOGIN_FAILED,
-                payload:{erroe:"Failed to login"}
+                type: authConstants.LOGIN_FAILED,
+                payload: { erroe: "Failed to login" }
             })
+        }
+    }
+}
+
+export const signOut = () => {
+    return async (dispatch) => {
+        dispatch({ type: authConstants.LOGOUT_REQUEST });
+        const res = await axios.post('/signOut');
+        const token = localStorage.getItem("token");
+        if (res.status === 200 && token) {
+
+            localStorage.clear();
+            dispatch({
+                type: authConstants.LOGOUT_SUCCESS
+            })
+        } else {
+            dispatch({type:authConstants.LOGOUT_FAILED,
+                        payload:{error:res.data.error}
+            });
         }
     }
 }
